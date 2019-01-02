@@ -19,7 +19,8 @@
   "homepage": "https://github.com/bstones1225/bloccit#readme",
   "devDependencies": {
     "jasmine": "^3.0.0",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "cryptiles": ">=4.1.2"
   },
   "dependencies": {
     "express": "^4.16.2"
