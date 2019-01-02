@@ -1,0 +1,19 @@
+{
+  "name": "bloccit",
+  "version": "1.0.0",
+  "description": "A Reddit-like application for users to discuss and share content",
+  "main": "\u001b[D\u001b[D\u001b[3~\u001b[3~\u001b[3~src/server.js)",
+  "scripts": {
+    "test": "export NODE_ENV=test && jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bstones1225/bloccit.git"
+  },
+  "author": "Brian Stones",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bstones1225/bloccit/issues"
+  },
+  "homepage": "https://github.com/bstones1225/bloccit#readme"
+}
