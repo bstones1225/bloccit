@@ -46,7 +46,6 @@ describe("Topic", () => {
      });
     });
   });
-
     describe("#getPosts()", () => {
       it("should return the associated post", (done) => {
         this.topic.getPosts()
