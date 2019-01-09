@@ -19,9 +19,8 @@ module.exports = {
        secret: process.env.cookieSecret,
        resave: false,
        saveUninitialized: false,
-       store: ...,
        proxy: true,
-       cookie: { 
+       cookie: {
          secure:true,
          maxAge: 1.21e+9 }
      }));
