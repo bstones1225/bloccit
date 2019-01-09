@@ -13,7 +13,6 @@ const sess = {
   saveUninitialized: false,
   proxy: true,
   cookie: {
-    secure:true,
     maxAge: 1.21e+9 }
 };
 
