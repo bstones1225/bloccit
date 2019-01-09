@@ -8,10 +8,9 @@ const session = require("express-session");
 const flash = require("express-flash");
 const passportConfig = require("./passport-config");
 const sess = {
-  secret: process.env.cookieSecret,
+  secret: 'keyboard cat',
   resave: false,
   saveUninitialized: false,
-  proxy: true,
   cookie: {
     maxAge: 1.21e+9 }
 };
