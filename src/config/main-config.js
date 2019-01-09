@@ -24,7 +24,7 @@ module.exports = {
      app.use(bodyParser.urlencoded({ extended: true }));
      app.use(express.static(path.join(__dirname, "..", "assets")));
      app.use(expressValidator());
-     if (app.get('env') === 'production') {
+     if (process.env.NODE_ENV === 'production') {
        app.set('trust proxy', 1) // trust first proxy
        sess.cookie.secure = true // serve secure cookies
      }
