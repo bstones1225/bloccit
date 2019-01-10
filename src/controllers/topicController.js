@@ -26,10 +26,8 @@ module.exports = {
     }
   },
   create(req, res, next){
-
 // #1
     const authorized = new Authorizer(req.user).create();
-
 // #2
     if(authorized) {
       let newTopic = {
