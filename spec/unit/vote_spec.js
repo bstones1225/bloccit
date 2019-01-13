@@ -133,7 +133,46 @@ describe("Vote", () => {
 
       })
     });
-
+    it("should not create a vote with a value other than 1 or -1", (done) => {
+      Vote.create({
+        value: 4,
+        postId: this.post.id,
+        userId: this.user.id
+      })
+      .then((vote) => {
+        done();
+      })
+      .catch((err) => {
+        expect(err.message).toContain("Validation error: Validation isIn on value failed");
+        done();
+      })
+});
+    it("should not create more than one vote per user", (done) => {
+  Vote.create({
+    value: 1,
+    postId: this.post.id,
+    userId: this.user.id
+  })
+  .then((vote) => {
+    Vote.create({
+      value:1,
+      postId: this.post.id,
+      userId: this.user.id
+    })
+    .then((vote) => {
+      done();
+    })
+    .catch((err) => {
+      expect(err.message).toContain("Validation error");
+      done();
+    });
+    done();
+  })
+  .catch((err) => {
+    console.log(err);
+    done();
+  })
+});
   });
   describe("#setUser()", () => {
 
@@ -255,6 +294,95 @@ describe("#getPost()", () => {
     });
   });
 
+});
+describe("#hasUpvoteFor()", () => {
+
+  it("should return true if user already has an upvote for the post", (done) => {
+    Post.create({
+      title: "What kind of coffee do they drink in space?",
+      body: "The cold kind.",
+      topicId: this.topic.id,
+      userId: this.user.id,
+      votes: {
+        value: 1,
+        userId: this.user.id,
+        postId: this.post.id
+      }
+    }, {
+      include: {
+        model: Vote,
+        as: "votes"
+      }
+    })
+    .then((post) => {
+      expect(post.hasUpvoteFor(this.post.userId)).toBe(true);
+      done();
+    })
+    .catch((err) => {
+      console.log(err);
+      done();
+    });
+    });
+  });
+
+describe("#hasDownvoteFor()", () => {
+
+  it("should return true is user already has a downvote for the post", (done) => {
+    Post.create({
+      title: "What kind of coffee do they drink in space?",
+      body: "The cold kind.",
+      topicId: this.topic.id,
+      userId: this.user.id,
+      votes: {
+        value: -1,
+        userId: this.user.id,
+        postId: this.post.id
+      }
+    }, {
+      include: {
+        model: Vote,
+        as: "votes"
+      }
+    })
+    .then((post) => {
+      expect(post.hasDownvoteFor(this.post.userId)).toBe(true);
+      done();
+    })
+    .catch((err) => {
+      console.log(err);
+      done();
+    });
+  });
+});
+
+describe("#getPoints()", () => {
+
+  it("should return the total number of votes on a post", (done) => {
+    Post.create({
+      title: "What kind of coffee do they drink in space?",
+      body: "The cold kind.",
+      topicId: this.topic.id,
+      userId: this.user.id,
+      votes: [{
+        value: 1,
+        userId: this.user.id,
+        postId: this.post.id
+      }]
+    }, {
+      include: {
+        model: Vote,
+        as: "votes"
+      }
+    })
+    .then((post) => {
+      expect(post.getPoints()).toBe(1);
+      done();
+    })
+    .catch((err) => {
+      console.log(err);
+      done();
+    });
+  });
 });
 
 });

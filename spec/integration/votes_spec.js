@@ -99,7 +99,7 @@ describe("routes : votes", () => {
 
   });
 });
-describe("signed in user voting on a post", () => {
+  describe("signed in user voting on a post", () => {
 
 beforeEach((done) => {  // before each suite in this context
   request.get({         // mock authentication
